@@ -102,6 +102,36 @@
         .download-button:hover {
             background-color: #66ff66;
         }
+        i {
+            font-style: italic;
+            color: #b0b0b0;
+        }
+        .dev-panel {
+            display: none;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border: 1px solid #4a4a4a;
+            border-radius: 5px;
+            margin-bottom: 40px;
+        }
+        .dev-panel input[type="password"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .dev-panel button {
+            padding: 5px 10px;
+            background-color: #00cc00;
+            color: #000;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .dev-panel button:hover {
+            background-color: #66ff66;
+        }
+        .dev-panel input[type="file"] {
+            margin: 10px 0;
+        }
         footer {
             background-color: #2a2a2a;
             padding: 10px;
@@ -126,7 +156,24 @@
     <header>
         <h1>Фанатская локализация для STALCRAFT:X</h1>
     </header>
+    <nav>
+        <a href="#about">О локализации</a>
+        <a href="#download">Скачать</a>
+        <a href="#install">Инструкция</a>
+    </nav>
     <div class="container">
+        <section id="dev-panel" class="dev-panel">
+            <h2>Панель разработчика</h2>
+            <p>Введите пароль для доступа:</p>
+            <input type="password" id="dev-password" placeholder="Пароль">
+            <button onclick="unlockDevPanel()">Войти</button>
+            <div id="upload-section" style="display: none;">
+                <h3>Загрузка файлов локализации</h3>
+                <input type="file" id="localization-files" multiple accept=".zip,.rar,.json,.txt">
+                <button onclick="uploadFiles()">Загрузить файлы</button>
+                <p id="upload-status"></p>
+            </div>
+        </section>
         <section id="about">
             <h2>О локализации</h2>
             <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После «Дня X» в STALRAFT были заменены названия мутантов, локаций, артефактов и много чего ещё. Я подумал, что будет классной идеей вернуть старые названия. Именно по этому я и создал этот сайт!</p>
@@ -140,8 +187,8 @@
             <h2>Инструкция по установке</h2>
             <ol>
                 <li>Скачайте папку с локализацией по ссылке выше.</li>
-                <li>Первый файл в папке перекиньте в <i>EXBO\runtime\stalcraft\modassets\assets\stalker\lang</i>, подтверждая замену файлов.
-                <li>Второй файл в папке перекиньте в <i>EXBO\runtime\stalcraft\modassets\assets\gloomycore\lang</i>, подтверждая замену файлов.
+                <li>Первый файл в папке перекиньте в <i>EXBO\runtime\stalcraft\modassets\assets\stalker\lang</i>, подтверждая замену файлов.</li>
+                <li>Второй файл в папке перекиньте в <i>EXBO\runtime\stalcraft\modassets\assets\gloomycore\lang</i>, подтверждая замену файлов.</li>
                 <li>Запустите игру, выбрав русский язык в настройках.</li>
                 <li>Наслаждайтесь игрой!</li>
             </ol>
@@ -158,6 +205,13 @@
                 const section = document.querySelector(this.getAttribute('href'));
                 section.scrollIntoView({ behavior: 'smooth' });
             });
+        });
+
+        // Открытие панели разработчика по нажатию F9
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'F9') {
+                document.getElementById('dev-panel').style.display = 'block';
+            }
         });
 
         // Логика для панели разработчика
