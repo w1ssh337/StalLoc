@@ -1,65 +1,175 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фанатская локализация для Сталкрафта</title>
+    <title>Фанатская локализация для S.T.A.L.K.E.R.</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
             margin: 0;
             padding: 0;
-            text-align: center;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
         }
         header {
-            background-color: #222;
+            background-color: #2a2a2a;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            text-align: center;
+            border-bottom: 2px solid #4a4a4a;
         }
-        h1 {
-            color: #ffcc00;
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #00cc00;
         }
-        main {
-            padding: 20px;
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
         }
-        .download-btn {
+        nav a {
+            color: #00cc00;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #66ff66;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #00cc00;
+            border-bottom: 1px solid #4a4a4a;
+            padding-bottom: 10px;
+        }
+        .download-button {
             display: inline-block;
-            background-color: #ffcc00;
-            color: #1a1a1a;
-            padding: 12px 20px;
-            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #00cc00;
+            color: #000;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            font-weight: bold;
         }
-        .download-btn:hover {
-            background-color: #e6b800;
+        .download-button:hover {
+            background-color: #66ff66;
         }
         footer {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #222;
-            color: #888;
+            background-color: #2a2a2a;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #4a4a4a;
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Фанатская локализация для Сталкрафта</h1>
+        <h1>Фанатская локализация для S.T.A.L.K.E.R.</h1>
     </header>
-
-    <main>
-        <p>Здесь вы можете скачать мою фанатскую локализацию для игры Сталкрафт.</p>
-        <a class="download-btn" href="files/localization.zip" download>📥 Скачать локализацию</a>
-        <p style="margin-top: 20px; font-size: 14px; color: #aaa;">
-            Версия: 1.0 • Автор: <strong>w1ssh337</strong>
-        </p>
-    </main>
-
+    <nav>
+        <a href="#about">О локализации</a>
+        <a href="#download">Скачать</a>
+        <a href="#install">Инструкция</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="container">
+        <section id="about">
+            <h2>О локализации</h2>
+            <p>Добро пожаловать на страницу фанатской локализации для S.T.A.L.K.E.R.! Наша команда энтузиастов создала качественный перевод, чтобы игроки могли насладиться игрой на русском языке с сохранением атмосферы Зоны. Локализация включает перевод текста, субтитров и интерфейса.</p>
+        </section>
+        <section id="download">
+            <h2>Скачать локализацию</h2>
+            <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена актуальная версия игры.</p>
+            <a href="https://github.com/yourusername/stalkercraft-localization/releases" class="download-button">Скачать локализацию</a>
+        </section>
+        <section id="install">
+            <h2>Инструкция по установке</h2>
+            <ol>
+                <li>Скачайте архив с локализацией по ссылке выше.</li>
+                <li>Распакуйте архив в папку с игрой (например, <code>C:\Program Files\Stalkercraft</code>).</li>
+                <li>Запустите игру и в настройках выберите русский язык.</li>
+                <li>Наслаждайтесь игрой!</li>
+            </ol>
+        </section>
+        <section id="contacts">
+            <h2>Контакты</h2>
+            <p>Если у вас есть вопросы или предложения, свяжитесь с нами:</p>
+            <p>Email: <a href="mailto:stalkercraft.fan@gmail.com">stalkercraft.fan@gmail.com</a></p>
+            <p>Discord: <a href="https://discord.gg/yourserver">Наш сервер</a></p>
+        </section>
+    </div>
     <footer>
-        <p>© 2025 Фанатская локализация для Сталкрафта. Неофициальный проект.</p>
+        <p>&copy; 2025 Фанатская локализация S.T.A.L.K.E.R. Все права на игру принадлежат их владельцам.</p>
     </footer>
+    <script>
+        // Плавная прокрутка к секциям
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
