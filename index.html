@@ -159,6 +159,43 @@
                 section.scrollIntoView({ behavior: 'smooth' });
             });
         });
+
+        // Логика для панели разработчика
+        function unlockDevPanel() {
+            const password = document.getElementById('dev-password').value;
+            const correctPassword = 'nmuKKX4b,z{hXoEy[A["]tA;i';
+            if (password === correctPassword) {
+                document.getElementById('upload-section').style.display = 'block';
+                document.getElementById('dev-password').style.display = 'none';
+                document.querySelector('.dev-panel button').style.display = 'none';
+            } else {
+                alert('Неверный пароль!');
+            }
+        }
+
+        function uploadFiles() {
+            const files = document.getElementById('localization-files').files;
+            const status = document.getElementById('upload-status');
+            if (files.length === 0) {
+                status.textContent = 'Выберите файлы для загрузки';
+                return;
+            }
+            status.textContent = 'Загрузка файлов... (Требуется серверная часть для обработки)';
+            // Здесь должен быть код для отправки файлов на сервер
+            // Например, через FormData и fetch API (требуется бэкенд)
+            /*
+            const formData = new FormData();
+            for (let file of files) {
+                formData.append('files[]', file);
+            }
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => status.textContent = 'Файлы загружены!')
+              .catch(error => status.textContent = 'Ошибка загрузки: ' + error);
+            */
+        }
     </script>
 </body>
 </html>
