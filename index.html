@@ -24,6 +24,11 @@
             font-size: 2.5em;
             color: #00cc00;
         }
+       .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
         nav {
             background-color: #333;
             padding: 10px;
@@ -37,11 +42,7 @@
         }
         nav a:hover {
             color: #66ff66;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
+
         }
         section {
             margin-bottom: 40px;
@@ -115,24 +116,7 @@
     <header>
         <h1>Фанатская локализация для STALCRAFT:X</h1>
     </header>
-
-    <div class="container">
-        <!-- Панель разработчика -->
-        <section id="dev-panel" class="dev-panel">
-            <h2>Панель разработчика</h2>
-            <div id="password-section">
-                <p>Введите пароль для доступа:</p>
-                <input type="password" id="dev-password" placeholder="Пароль">
-                <button onclick="unlockDevPanel()">Войти</button>
-                <p id="password-status" style="color:red;"></p>
-            </div>
-            <div id="upload-section" style="display: none;">
-                <h3>Загрузка файлов локализации</h3>
-                <input type="file" id="localization-files" accept=".zip">
-                <p id="upload-status"></p>
-            </div>
-        </section>
-
+ <div class="container">      
         <section id="about">
             <h2>О локализации</h2>
             <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После «Дня X» в STALCRAFT были заменены названия мутантов, локаций, артефактов и много чего ещё. Я подумал, что будет классной идеей вернуть старые названия. Именно поэтому я и создал этот сайт!</p>
@@ -160,20 +144,5 @@
     <footer>
         <p>&copy; 2025 Фанатская локализация STALCRAFT:X. Все права на игру принадлежат EXBO и иным правообладателям.</p> 
     </footer>
-
-<script>
-  document.getElementById("downloadBtn").addEventListener("click", function() {
-    const text = "StalLoc"; // содержимое файла
-    const blob = new Blob([text], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "stal_loc.txt"; // имя скачиваемого файла
-    a.click();
-
-    URL.revokeObjectURL(url);
-     });
-</script>
 </body>
 </html>
