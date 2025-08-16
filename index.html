@@ -115,6 +115,24 @@
     <header>
         <h1>Фанатская локализация для STALCRAFT:X</h1>
     </header>
+
+    <div class="container">
+        <!-- Панель разработчика -->
+        <section id="dev-panel" class="dev-panel">
+            <h2>Панель разработчика</h2>
+            <div id="password-section">
+                <p>Введите пароль для доступа:</p>
+                <input type="password" id="dev-password" placeholder="Пароль">
+                <button onclick="unlockDevPanel()">Войти</button>
+                <p id="password-status" style="color:red;"></p>
+            </div>
+            <div id="upload-section" style="display: none;">
+                <h3>Загрузка файлов локализации</h3>
+                <input type="file" id="localization-files" accept=".zip">
+                <p id="upload-status"></p>
+            </div>
+        </section>
+
         <section id="about">
             <h2>О локализации</h2>
             <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После «Дня X» в STALCRAFT были заменены названия мутантов, локаций, артефактов и много чего ещё. Я подумал, что будет классной идеей вернуть старые названия. Именно поэтому я и создал этот сайт!</p>
@@ -136,36 +154,9 @@
         </section>
     </div>
     <footer>
-        <p>&copy; 2025 Фанатская локализация STALCRAFT:X. Все права на игру принадлежат их владельцам.</p> 
+        <p>&copy; 2025 Фанатская локализация STALCRAFT:X. Все права на игру принадлежат EXBO и иным правообладателям.</p> 
     </footer>
 
-    <script>       
-        // При выборе файла сохраняем его в customFile
-        document.getElementById("localization-files").addEventListener("change", function() {
-            if (this.files.length > 0) {
-                customFile = this.files[0];
-                document.getElementById("upload-status").textContent = "Файл выбран: " + customFile.name;
-            } else {
-                customFile = null;
-                document.getElementById("upload-status").textContent = "Файл не выбран.";
-            }
-        });
-
-        // Перехватываем клик по кнопке "Скачать локализацию"
-        document.getElementById("download-link").addEventListener("click", function(e) {
-            if (customFile) {
-                e.preventDefault(); // отменяем переход на GitHub
-                const url = URL.createObjectURL(customFile);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = customFile.name;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }
-        });
-    </script>
 <script>
   document.getElementById("downloadBtn").addEventListener("click", function() {
     const text = "StalLoc"; // содержимое файла
