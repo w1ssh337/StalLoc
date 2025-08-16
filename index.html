@@ -148,7 +148,7 @@
 
 <script>
     // Автоматическая дата и время последнего обновления файла
-    const filePath = "StalLoc.zip"; // путь к файлу
+    const filePath = "stal_loc.zip"; // путь к файлу
     const lastUpdatedEl = document.getElementById("last-updated");
 
     fetch(filePath, { method: "HEAD" })
@@ -157,8 +157,11 @@
             if (lastModified) {
                 const date = new Date(lastModified);
                 lastUpdatedEl.textContent = "Последнее обновление: " + date.toLocaleString('ru-RU', {
-                    day: '2-digit', month: '2-digit', year: 'numeric',
-                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
                 });
             } else {
                 lastUpdatedEl.textContent = "Последнее обновление: информация недоступна";
