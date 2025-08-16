@@ -141,6 +141,33 @@
             <h2>Скачать локализацию</h2>
             <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена последняя версия игры.</p> 
             <a id="download-link" href="StalLoc.zip" download class="download-button">Скачать локализацию</a>
+            <p id="last-updated" style="margin-top:10px; font-style: italic; color: #b0b0b0;">
+        Последнее обновление: 
+    </p>
+</section>
+
+<script>
+    // Автоматическая дата и время последнего обновления файла
+    const filePath = "StalLoc.zip"; // путь к файлу
+    const lastUpdatedEl = document.getElementById("last-updated");
+
+    fetch(filePath, { method: "HEAD" })
+        .then(response => {
+            const lastModified = response.headers.get("last-modified");
+            if (lastModified) {
+                const date = new Date(lastModified);
+                lastUpdatedEl.textContent = "Последнее обновление: " + date.toLocaleString('ru-RU', {
+                    day: '2-digit', month: '2-digit', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                });
+            } else {
+                lastUpdatedEl.textContent = "Последнее обновление: информация недоступна";
+            }
+        })
+        .catch(() => {
+            lastUpdatedEl.textContent = "Последнее обновление: не удалось получить дату";
+        });
+</script>
         </section>
         <section id="install">
             <h2>Инструкция по установке</h2>
