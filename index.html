@@ -115,24 +115,6 @@
     <header>
         <h1>Фанатская локализация для STALCRAFT:X</h1>
     </header>
-
-    <div class="container">
-        <!-- Панель разработчика -->
-        <section id="dev-panel" class="dev-panel">
-            <h2>Панель разработчика</h2>
-            <div id="password-section">
-                <p>Введите пароль для доступа:</p>
-                <input type="password" id="dev-password" placeholder="Пароль">
-                <button onclick="unlockDevPanel()">Войти</button>
-                <p id="password-status" style="color:red;"></p>
-            </div>
-            <div id="upload-section" style="display: none;">
-                <h3>Загрузка файлов локализации</h3>
-                <input type="file" id="localization-files" accept=".zip">
-                <p id="upload-status"></p>
-            </div>
-        </section>
-
         <section id="about">
             <h2>О локализации</h2>
             <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После «Дня X» в STALCRAFT были заменены названия мутантов, локаций, артефактов и много чего ещё. Я подумал, что будет классной идеей вернуть старые названия. Именно поэтому я и создал этот сайт!</p>
@@ -157,31 +139,7 @@
         <p>&copy; 2025 Фанатская локализация STALCRAFT:X. Все права на игру принадлежат их владельцам.</p> 
     </footer>
 
-    <script>
-        const devPassword = "1234"; // ← тут задай свой пароль
-        let customFile = null; // выбранный файл из панели
-
-        // Показ панели по F9
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "F9") {
-                const panel = document.getElementById("dev-panel");
-                panel.style.display = (panel.style.display === "none" || panel.style.display === "") 
-                                      ? "block" : "none";
-            }
-        });
-
-        // Разблокировка панели
-        function unlockDevPanel() {
-            const input = document.getElementById("dev-password").value;
-            const status = document.getElementById("password-status");
-            if (input === devPassword) {
-                document.getElementById("password-section").style.display = "none";
-                document.getElementById("upload-section").style.display = "block";
-            } else {
-                status.textContent = "Неверный пароль!";
-            }
-        }
-
+    <script>       
         // При выборе файла сохраняем его в customFile
         document.getElementById("localization-files").addEventListener("change", function() {
             if (this.files.length > 0) {
