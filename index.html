@@ -1,48 +1,9 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фанатская локализация для STALCRAFT:X</title>
+    <title>Фанатская локализация для STALCRAFT:X</title> 
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -106,6 +67,7 @@
             font-style: italic;
             color: #b0b0b0;
         }
+        /* Панель разработчика */
         .dev-panel {
             display: none;
             background-color: #2a2a2a;
@@ -114,9 +76,9 @@
             border-radius: 5px;
             margin-bottom: 40px;
         }
-        .dev-panel input[type="password"] {
+        .dev-panel input[type="password"], .dev-panel input[type="file"] {
             padding: 5px;
-            margin-right: 10px;
+            margin: 10px 0;
         }
         .dev-panel button {
             padding: 5px 10px;
@@ -128,9 +90,6 @@
         }
         .dev-panel button:hover {
             background-color: #66ff66;
-        }
-        .dev-panel input[type="file"] {
-            margin: 10px 0;
         }
         footer {
             background-color: #2a2a2a;
@@ -154,28 +113,34 @@
 </head>
 <body>
     <header>
-        <h1>Фанатская локализация для STALCRAFT:X</h1>
+        <h1>Фанатская локализация для S.T.A.L.K.E.R.</h1>
     </header>
+
     <div class="container">
+        <!-- Панель разработчика -->
         <section id="dev-panel" class="dev-panel">
             <h2>Панель разработчика</h2>
-            <p>Введите пароль для доступа:</p>
-            <input type="password" id="dev-password" placeholder="Пароль">
-            <button onclick="unlockDevPanel()">Войти</button>
+            <div id="password-section">
+                <p>Введите пароль для доступа:</p>
+                <input type="password" id="dev-password" placeholder="Пароль">
+                <button onclick="unlockDevPanel()">Войти</button>
+                <p id="password-status" style="color:red;"></p>
+            </div>
             <div id="upload-section" style="display: none;">
                 <h3>Загрузка файлов локализации</h3>
-                <input type="file" id="localization-files" multiple accept=".zip,.rar,.json,.txt">
-                <button onclick="uploadFiles()">Загрузить файлы</button>
+                <input type="file" id="localization-files" accept=".zip">
+                <button onclick="uploadFiles()">Загрузить</button>
                 <p id="upload-status"></p>
             </div>
         </section>
+
         <section id="about">
             <h2>О локализации</h2>
-            <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После «Дня X» в STALRAFT были заменены названия мутантов, локаций, артефактов и много чего ещё. Я подумал, что будет классной идеей вернуть старые названия. Именно по этому я и создал этот сайт!</p>
+            <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После «Дня X» в STALCRAFT были заменены названия мутантов, локаций, артефактов и много чего ещё. Я подумал, что будет классной идеей вернуть старые названия. Именно поэтому я и создал этот сайт!</p>
         </section>
         <section id="download">
             <h2>Скачать локализацию</h2>
-            <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена последняя версия игры.</p>
+            <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена последняя версия игры.</p> 
             <a href="https://github.com/yourusername/stalkercraft-localization/releases" class="download-button">Скачать локализацию</a>
         </section>
         <section id="install">
@@ -185,65 +150,60 @@
                 <li>Первый файл в папке перекиньте в <i>EXBO\runtime\stalcraft\modassets\assets\stalker\lang</i>, подтверждая замену файлов.</li>
                 <li>Второй файл в папке перекиньте в <i>EXBO\runtime\stalcraft\modassets\assets\gloomycore\lang</i>, подтверждая замену файлов.</li>
                 <li>Запустите игру, выбрав русский язык в настройках.</li>
-                <li>Наслаждайтесь игрой!</li>
+                <li>Наслаждайтесь игрой!</li> 
             </ol>
         </section>
     </div>
     <footer>
-        <p>&copy; 2025 Фанатская локализация STALCRAFT:X. Все права на игру принадлежат EXBO и иным правообладателям.</p>
+        <p>&copy; 2025 Фанатская локализация STALCRAFT:X. Все права на игру принадлежат их владельцам.</p> 
     </footer>
-    <script>
-        // Плавная прокрутка к секциям
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const section = document.querySelector(this.getAttribute('href'));
-                section.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
 
-        // Открытие панели разработчика по нажатию F9
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'F9') {
-                document.getElementById('dev-panel').style.display = 'block';
+    <script>
+        // Настройки
+        const devPassword = "1234"; // ← тут задай свой пароль
+
+        // Показ панели по F9
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "F9") {
+                const panel = document.getElementById("dev-panel");
+                panel.style.display = (panel.style.display === "none" || panel.style.display === "") 
+                                      ? "block" : "none";
             }
         });
 
-        // Логика для панели разработчика
+        // Разблокировка панели
         function unlockDevPanel() {
-            const password = document.getElementById('dev-password').value;
-            const correctPassword = 'nmuKKX4b,z{hXoEy[A["]tA;i';
-            if (password === correctPassword) {
-                document.getElementById('upload-section').style.display = 'block';
-                document.getElementById('dev-password').style.display = 'none';
-                document.querySelector('.dev-panel button').style.display = 'none';
+            const input = document.getElementById("dev-password").value;
+            const status = document.getElementById("password-status");
+            if (input === devPassword) {
+                document.getElementById("password-section").style.display = "none";
+                document.getElementById("upload-section").style.display = "block";
             } else {
-                alert('Неверный пароль!');
+                status.textContent = "Неверный пароль!";
             }
         }
 
+        // Загруженный .zip сразу скачивается обратно
         function uploadFiles() {
-            const files = document.getElementById('localization-files').files;
-            const status = document.getElementById('upload-status');
-            if (files.length === 0) {
-                status.textContent = 'Выберите файлы для загрузки';
-                return;
+            const fileInput = document.getElementById("localization-files");
+            const status = document.getElementById("upload-status");
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                status.textContent = "Файл " + file.name + " загружен!";
+
+                // Создаём ссылку на файл
+                const url = URL.createObjectURL(file);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = file.name;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } else {
+                status.textContent = "Файл не выбран.";
             }
-            status.textContent = 'Загрузка файлов... (Требуется серверная часть для обработки)';
-            // Здесь должен быть код для отправки файлов на сервер
-            // Например, через FormData и fetch API (требуется бэкенд)
-            /*
-            const formData = new FormData();
-            for (let file of files) {
-                formData.append('files[]', file);
-            }
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json())
-              .then(data => status.textContent = 'Файлы загружены!')
-              .catch(error => status.textContent = 'Ошибка загрузки: ' + error);
-            */
         }
     </script>
 </body>
