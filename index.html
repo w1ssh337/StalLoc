@@ -208,5 +208,19 @@
             }
         });
     </script>
+<script>
+  document.getElementById("downloadBtn").addEventListener("click", function() {
+    const text = "StalLoc"; // содержимое файла
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "stal_loc.txt"; // имя скачиваемого файла
+    a.click();
+
+    URL.revokeObjectURL(url);
+     });
+</script>
 </body>
 </html>
