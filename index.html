@@ -7,25 +7,86 @@
     <title>Фанатская локализация для STALCRAFT:X</title> 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             background: url("background.jpg") no-repeat center center fixed;
             background-size: cover;
             color: #e0e0e0;
             margin: 0;
             padding: 0;
-         }
-        header {
-            background: linear-gradient(90deg, #222, #222);
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 2px solid #ffcc66;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: #111;
+    border-bottom: 2px solid #ffcc66;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 0 14px rgba(255, 204, 102,.25);
+}
+
+.header-inner {
+    max-width: 250px;   /* как у .container */
+    margin: 0 auto;
+    padding: 15px 20px;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.logo {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo .title {
+    font-size: 1.7em;
+    text-shadow: 0 0 14px rgba(255, 204, 102,.25);
+    font-weight: 1000;
+    color: #ffcc66;
+    letter-spacing: 0.3px;
+}
+
+.logo .tag {
+    background: #222;
+    border: 1px solid #555;
+    color: #cfcfcf;
+    font-size: 0.82em;
+    padding: 3px 15px;
+    white-space: nowrap;
+    border-radius: 2000px; /* «пилюля» */
+}
+
+.site-nav a {
+    margin-left: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #e0e0e0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.25s ease;
+}
+
+.site-nav a:hover {
+    background: #ffcc66;
+    color: #000;
+    box-shadow: 0 0 10px rgba(255,204,102,0.7);
+}
+
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #ffcc66;
-            text-shadow: 0 0 2px #ffcc66, 0 0 20px #008800;
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #e0e0e0;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            background: #ffcc66;
+            color: #000;
+            box-shadow: 0 0 10px rgba(255,204,102,0.7);
         }
         .container {
             max-width: 1000px;
@@ -49,7 +110,7 @@
             border-bottom: 1.1px solid #333;
             padding-bottom: 7px;
             font-size: 2em;
-            text-shadow: 0 0 7px #00cc44;
+            text-shadow: 0 0 14px rgba(255, 204, 102,.40);
         }
         .download-button {
             display: inline-block;
@@ -106,9 +167,15 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Фанатская локализация для STALCRAFT:X</h1>
-    </header>
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="title">StalLoc</span>
+      <span class="tag">community project</span>
+    </div>
+  </div>
+</header>
+
  <div class="container">      
         <section id="about">
             <h2>О сайте</h2>
