@@ -134,7 +134,7 @@ header {
             color: #ff5555;
             font-weight: bold;
             font-size: 1.1em;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
             text-shadow: 0 0 2px #ff0000;
         }
@@ -158,6 +158,7 @@ header {
             font-style: italic;
             color: #aaa;
             font-size: 0.97em;
+            text-align: center;
         }
         ol li {
             font-size: 1.2em;
@@ -180,15 +181,55 @@ header {
             <h2>О сайте</h2>
             <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После событий «Дня X» в игре изменились названия мутантов, локаций, артефактов и многого другого. Я решил, что было бы здорово вернуть оригинальные названия, именно по этому был создан этот сайт!</p>
         </section>
-        <section id="download">
-            <h2>Скачать локализацию</h2>
-            <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена последняя версия игры.</p> 
-                                                                                                                                               
-         <!--   <p id="update-warning" class="warning">⚠ Локализация ещё не была обновлена для нового обновления игры и работает некорректно!</p> -->  
-           
-            <a id="download-link" href="StalLoc.zip" download class="download-button">Скачать локализацию</a>
-            <p id="last-updated">Последнее обновление: 20 августа 2025, 13:00 МСК</p>
-        </section>        
+<section id="download">
+  <h2>Скачать локализацию</h2>
+  <div style="text-align: center;">
+   <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена последняя версия игры.</p> 
+  </div>
+
+  <!-- Предупреждение (по умолчанию скрыто) -->
+  <p id="update-warning" class="warning" style="display:none;">
+    ⚠ Локализация ещё не была обновлена для нового обновления игры и временно недоступна для скачивания!
+  </p>  
+
+  <!-- Кнопка обёрнута в центрирующий контейнер -->
+  <div style="text-align: center;">
+    <a id="download-link" href="StalLoc.zip" download class="download-button">Скачать локализацию</a>
+  </div>
+
+  <p id="last-updated">Последнее обновление: 20 августа 2025, 13:00 МСК</p>
+</section>
+
+
+<script>
+  // ВКЛ/ВЫКЛ доступности локализации
+  const localizationUpdated = true; // ← меняем на false, если локализация устарела
+
+  const downloadLink = document.getElementById("download-link");
+  const updateWarning = document.getElementById("update-warning");
+
+  if (!localizationUpdated) {
+    // Блокируем кнопку
+    downloadLink.classList.add("disabled");
+    downloadLink.removeAttribute("href");
+    downloadLink.removeAttribute("download");
+    downloadLink.innerText = "Недоступно";
+
+    // Показываем предупреждение
+    updateWarning.style.display = "block";
+  }
+</script>
+
+<style>
+  /* Стиль для заблокированной кнопки */
+  .download-button.disabled {
+    background: #777 !important;
+    color: #333 !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+  }
+</style>
         <section id="install">
             <h2>Инструкция по установке</h2>
             <ol>
