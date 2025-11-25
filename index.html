@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -110,6 +111,7 @@ header {
             padding-bottom: 7px;
             font-size: 2em;
             text-shadow: 0 0 14px rgba(255, 204, 102,.25);
+            margin-bottom: 10px;
         }
         .download-button {
             display: inline-block;
@@ -182,30 +184,29 @@ header {
             <p>Добро пожаловать на сайт с фанатской локализацией для STALCRAFT:X! После событий «Дня X» в игре изменились названия мутантов, локаций, артефактов и многого другого. Я решил, что было бы здорово вернуть оригинальные названия, именно по этому был создан этот сайт!</p>
         </section>
 <section id="download">
-  <div style="text-align: center;">
-  <h2>Скачать локализацию</h2>
+  <div style="text-align: center; margin-bottom: 1px;">
+    <h2>Скачать локализацию</h2>
   </div>
-  <div style="text-align: center; margin_bottom: 1px;">
+  <div style="text-align: center; margin-top: 1px;">
    <p>Скачайте последнюю версию локализации по ссылке ниже. Убедитесь, что у вас установлена последняя версия игры.</p> 
   </div>
 
-  <!-- Предупреждение -->
+  <!-- Предупреждение (по умолчанию скрыто) -->
   <p id="update-warning" class="warning" style="display:none;">
-    ⚠ Локализация ещё не была обновлена до нового обновления игры и временно недоступна для скачивания!
+    ⚠ Локализация ещё не была обновлена для нового обновления игры и временно недоступна для скачивания!
   </p>  
 
-  <!-- Кнопка обёрнута в центрирующий контейнер -->
   <div style="text-align: center;">
     <a id="download-link" href="StalLoc.zip" download class="download-button">Скачать локализацию</a>
   </div>
 
-  <p id="last-updated">Последнее обновление: 24 сентября 2025, 21:05 МСК</p>
+  <p id="last-updated">Последнее обновление: 25 ноября 2025, 7:45 МСК</p>
 </section>
 
 
 <script>
   // ВКЛ/ВЫКЛ доступности локализации
-  const localizationUpdated = false; // ← замена на false, если локализация устарела
+  const localizationUpdated = true; // ← меняем на false, если локализация устарела
 
   const downloadLink = document.getElementById("download-link");
   const updateWarning = document.getElementById("update-warning");
@@ -236,8 +237,8 @@ header {
             <h2>Инструкция по установке</h2>
             <ol>
                 <li>Скачайте архив с локализацией по ссылке выше.</li>
-                <li>Перейдите в папку <b>Stalker</b> и перенесите файл <b>ru.lang</b> в <i>...\EXBO\runtime\stalcraft\modassets\assets\stalker\lang</i>, подтверждая замену файлов.</li>
-                <li>Перейдите в папку <b>Gloomycore</b> и перенесите файл <b>ru.lang</b> в <i>...\EXBO\runtime\stalcraft\modassets\assets\gloomycore\lang</i>, подтверждая замену файлов.</li>
+                <li>Перейдите в директорию игры, в папку <i>...\EXBO\runtime\stalcraft\modassets\assets\stalker\lang</i> перенесите из архивной папки <b>Stalker</b> файл <b>ru.lang</b>, подтверждая замену файлов.</li>
+                <li>Перейдите в директорию игры, в папку <i>...\EXBO\runtime\stalcraft\modassets\assets\gloomycore\lang</i> перенесите из архивной папки <b>Gloomycore</b> файл <b>ru.lang</b> в , подтверждая замену файлов.</li>
                 <li>Запустите игру, выбрав русский язык в настройках.</li>
                 <li>Наслаждайтесь игрой!</li> 
             </ol>
