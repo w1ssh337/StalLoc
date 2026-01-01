@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial;
-            background: url("background.jpg") no-repeat center center fixed;
+            background: url("background.png") no-repeat center center fixed;
             background-size: cover;
             color: #e0e0e0;
             margin: 0;
@@ -206,19 +206,19 @@ header {
 
 <script>
   // ВКЛ/ВЫКЛ доступности локализации
-  const localizationUpdated = true; // ← меняем на false, если локализация устарела
+  const localizationUpdated = true; // ← false, если локализация устарела
 
   const downloadLink = document.getElementById("download-link");
   const updateWarning = document.getElementById("update-warning");
 
   if (!localizationUpdated) {
-    // Блокируем кнопку
+    // Блокировка кнопки
     downloadLink.classList.add("disabled");
     downloadLink.removeAttribute("href");
     downloadLink.removeAttribute("download");
     downloadLink.innerText = "Недоступно";
 
-    // Показываем предупреждение
+    // Вывод предупреждения
     updateWarning.style.display = "block";
   }
 </script>
