@@ -86,7 +86,7 @@
             font-size: 0.82em;
             padding: 3px 15px;
             white-space: nowrap;
-            border-radius: 2000px; /* "пилюля" */
+            border-radius: 2000px; <!-- "Пилюля" -->
         }
 
         .site-nav a {
@@ -221,7 +221,7 @@
     </style>
 </head>
 <body>
-    <!-- Сообщение для мобильных устройств -->
+    <!-- Сообщение для моб. устройств -->
     <div id="mobile-block">
         <h2>⚠<br>
         Сайт недоступен на мобильных устройствах</h2>
@@ -233,7 +233,7 @@
         </p>
     </div>
 
-    <!-- Основной контент (будет скрыт на мобилках) -->
+    <!-- Основной контент (будет скрыт на моб. устройствах) -->
     <div id="main-content">
         <header>
             <div class="header-inner">
@@ -283,47 +283,41 @@
         </div>
         
         <footer>
-            <p>&copy; 2025 Фанатская локализация STALCRAFT: X. Все права на игру принадлежат EXBO и иным правообладателям.</p> 
+            <p>&copy; 2026 Фанатская локализация STALCRAFT: X. Все права на игру принадлежат EXBO и иным правообладателям.</p> 
         </footer>
     </div>
 
     <script>
-        // Проверка на мобильные устройства и планшеты
+        <!-- Проверка на моб. устройства и планшеты -->
         function isMobileDevice() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
                    (navigator.maxTouchPoints && navigator.maxTouchPoints > 2) ||
-                   (window.innerWidth <= 768); // блокировка маленьких экранов
+                   (window.innerWidth <= 768);
         }
 
-        // ВКЛ/ВЫКЛ доступности локализации
-        const localizationUpdated = true; // ← false, если локализация устарела
+        <!-- Вкл./выкл. доступности скачки локализации -->
+        const localizationUpdated = true; <!-- "false", если локализация устарела -->
 
-        // Проверяем устройство при загрузке страницы
+        <!-- Проверка устройства при загрузке страницы -->
         document.addEventListener('DOMContentLoaded', function() {
             if (isMobileDevice()) {
-                // Показываем сообщение о блокировке
                 document.getElementById('mobile-block').style.display = 'block';
-                // Скрываем основной контент
                 document.getElementById('main-content').style.display = 'none';
             } else {
-                // Для десктопов - обычная логика
                 const downloadLink = document.getElementById("download-link");
                 const updateWarning = document.getElementById("update-warning");
 
                 if (!localizationUpdated) {
-                    // Блокировка кнопки
                     downloadLink.classList.add("disabled");
                     downloadLink.removeAttribute("href");
                     downloadLink.removeAttribute("download");
                     downloadLink.innerText = "Недоступно";
-
-                    // Вывод предупреждения
                     updateWarning.style.display = "block";
                 }
             }
         });
 
-        // Также проверяем при изменении размера окна
+        <!-- Проверка изменений размера окна -->
         window.addEventListener('resize', function() {
             if (isMobileDevice() && document.getElementById('mobile-block').style.display === 'none') {
                 document.getElementById('mobile-block').style.display = 'block';
