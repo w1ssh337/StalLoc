@@ -1,4 +1,10 @@
-#mobile-block {
+body /* Масштабирование */
+{
+    zoom: 1.09;
+}
+
+#mobile-block 
+{
     display: none;
     position: fixed;
     top: 0;
@@ -14,13 +20,15 @@
     font-family: Arial;
 }
 
-#mobile-block h2 {
+#mobile-block h2 
+{
     font-size: 2em;
     margin-bottom: 20px;
     text-shadow: 0 0 14px rgba(255, 204, 102, .25);
 }
 
-#mobile-block p {
+#mobile-block p 
+{
     font-size: 1.2em;
     color: #e0e0e0;
     line-height: 1.5;
@@ -28,7 +36,8 @@
     margin: 0 auto 30px;
 }
 
-body {
+body 
+{
     font-family: Arial;
     background: url("background3.png") no-repeat center center fixed;
     background-size: cover;
@@ -37,7 +46,8 @@ body {
     padding: 0;
 }
 
-header {
+header 
+{
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -48,7 +58,8 @@ header {
     text-shadow: 0 0 14px rgba(255, 204, 102, .25);
 }
 
-.header-inner {
+.header-inner 
+{
     max-width: 250px;
     margin: 0 auto;
     padding: 15px 20px;
@@ -56,14 +67,16 @@ header {
     gap: 16px;
 }
 
-.logo {
+.logo 
+{
     font-size: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.logo .title {
+.logo .title 
+{
     font-size: 1.7em;
     text-shadow: 0 0 14px rgba(255, 204, 102, .25);
     font-weight: 1000;
@@ -71,33 +84,37 @@ header {
     letter-spacing: 0.3px;
 }
 
-.logo .tag {
+.logo .tag /* Пилюля */
+{
     background: #222;
     border: 1px solid #555;
     color: #cfcfcf;
     font-size: 0.82em;
-    padding: 3px 15px;
+    padding: 5px 16px;
     white-space: nowrap;
-    border-radius: 2000px; /* "Пилюля" */
+    border-radius: 2000px;
 }
 
-.site-nav a {
+.site-nav a 
+{
     margin-left: 14px;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 7000;
     color: #e0e0e0;
     padding: 8px 14px;
     border-radius: 6px;
     transition: 0.25s ease;
 }
 
-.site-nav a:hover {
+.site-nav a:hover 
+{
     background: #ffcc66;
     color: #000;
     box-shadow: 0 0 10px rgba(255, 204, 102, 0.7);
 }
 
-nav a {
+nav a 
+{
     margin-left: 20px;
     text-decoration: none;
     font-weight: bold;
@@ -107,19 +124,22 @@ nav a {
     transition: 0.3s;
 }
 
-nav a:hover {
+nav a:hover 
+{
     background: #ffcc66;
     color: #000;
     box-shadow: 0 0 10px rgba(255, 204, 102, 0.7);
 }
 
-.container {
+.container 
+{
     max-width: 1000px;
     margin: 35px auto;
     padding: 0 20px;
 }
 
-section {
+section 
+{
     background: #303232;
     padding: 25px;
     margin-bottom: 30px;
@@ -128,12 +148,14 @@ section {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-section:hover {
+section:hover 
+{
     transform: translateY(-3px);
     box-shadow: 0 0 20px rgba(0, 255, 100, 0.3);
 }
 
-h2 {
+h2 
+{
     color: #ffcc66;
     border-bottom: 1.1px solid #333;
     padding-bottom: 7px;
@@ -142,7 +164,8 @@ h2 {
     margin-bottom: 10px;
 }
 
-.download-button {
+.download-button 
+{
     display: inline-block;
     padding: 12px 25px;
     background: linear-gradient(90deg, #ffd66b, #ffd66b);
@@ -156,14 +179,16 @@ h2 {
     transition: all 0.3s ease;
 }
 
-.download-button:hover {
+.download-button:hover 
+{
     background: linear-gradient(90deg, #ffd66b, #ffd66b);
     text-align: center;
     box-shadow: 0 0 25px rgba(0, 255, 150, 0.7);
     transform: scale(1.05);
 }
 
-.warning {
+.warning 
+{
     color: #ff5555;
     font-weight: bold;
     font-size: 1.1em;
@@ -172,12 +197,14 @@ h2 {
     text-shadow: 0 0 2px #ff0000;
 }
 
-i {
+i 
+{
     font-style: italic;
     color: #b0b0b0;
 }
 
-footer {
+footer 
+{
     background: #111;
     padding: 15px;
     text-align: center;
@@ -189,7 +216,8 @@ footer {
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
 }
 
-#last-updated {
+#last-updated 
+{
     margin-top: 20px;
     font-style: italic;
     color: #aaa;
@@ -197,12 +225,14 @@ footer {
     text-align: center;
 }
 
-ol li {
+ol li 
+{
     font-size: 1.2em;
     margin-bottom: 30px;
 }
 
-.download-button.disabled {
+.download-button.disabled 
+{
     background: #777 !important;
     color: #333 !important;
     box-shadow: none !important;
