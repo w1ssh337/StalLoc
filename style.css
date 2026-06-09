@@ -1,0 +1,211 @@
+#mobile-block {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    color: #ffcc66;
+    z-index: 9999;
+    text-align: center;
+    padding: 50px 20px;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+#mobile-block h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 14px rgba(255, 204, 102, .25);
+}
+
+#mobile-block p {
+    font-size: 1.2em;
+    color: #e0e0e0;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+body {
+    font-family: Arial;
+    background: url("background3.png") no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: #111;
+    border-bottom: 2px solid #ffcc66;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 14px rgba(255, 204, 102, .25);
+}
+
+.header-inner {
+    max-width: 250px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.logo {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo .title {
+    font-size: 1.7em;
+    text-shadow: 0 0 14px rgba(255, 204, 102, .25);
+    font-weight: 1000;
+    color: #ffcc66;
+    letter-spacing: 0.3px;
+}
+
+.logo .tag {
+    background: #222;
+    border: 1px solid #555;
+    color: #cfcfcf;
+    font-size: 0.82em;
+    padding: 3px 15px;
+    white-space: nowrap;
+    border-radius: 2000px; /* "Пилюля" */
+}
+
+.site-nav a {
+    margin-left: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #e0e0e0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.25s ease;
+}
+
+.site-nav a:hover {
+    background: #ffcc66;
+    color: #000;
+    box-shadow: 0 0 10px rgba(255, 204, 102, 0.7);
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #e0e0e0;
+    padding: 8px 15px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #ffcc66;
+    color: #000;
+    box-shadow: 0 0 10px rgba(255, 204, 102, 0.7);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: #303232;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.3);
+}
+
+h2 {
+    color: #ffcc66;
+    border-bottom: 1.1px solid #333;
+    padding-bottom: 7px;
+    font-size: 2em;
+    text-shadow: 0 0 14px rgba(255, 204, 102, .25);
+    margin-bottom: 10px;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #ffd66b, #ffd66b);
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 0 14px rgba(255, 204, 102, .25);
+    transition: all 0.3s ease;
+}
+
+.download-button:hover {
+    background: linear-gradient(90deg, #ffd66b, #ffd66b);
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0, 255, 150, 0.7);
+    transform: scale(1.05);
+}
+
+.warning {
+    color: #ff5555;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 0 0 2px #ff0000;
+}
+
+i {
+    font-style: italic;
+    color: #b0b0b0;
+}
+
+footer {
+    background: #111;
+    padding: 15px;
+    text-align: center;
+    border-top: 2px solid #ffcc66;
+    color: #888;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#last-updated {
+    margin-top: 20px;
+    font-style: italic;
+    color: #aaa;
+    font-size: 0.97em;
+    text-align: center;
+}
+
+ol li {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.download-button.disabled {
+    background: #777 !important;
+    color: #333 !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
