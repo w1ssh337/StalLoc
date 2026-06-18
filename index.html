@@ -46,7 +46,7 @@
 
                 <!-- Предупреждение (по умолчанию скрыто) -->
                 <p id="update-warning" class="warning" style="display:none;">
-                    ⚠ Локализация не была обновлена для нового обновления игры и временно недоступна для скачивания!
+                    ⚠ Локализация не была обновлена до последнего обновления игры: некоторый текст может не отображаться!
                 </p>  
 
                 <div style="text-align: center;">
@@ -93,11 +93,8 @@
                 const updateWarning = document.getElementById("update-warning");
 
                 if (!localizationUpdated) {
-                    downloadLink.classList.add("disabled");
-                    downloadLink.removeAttribute("href");
-                    downloadLink.removeAttribute("download");
-                    downloadLink.innerText = "Недоступно";
                     updateWarning.style.display = "block";
+                    downloadLink.innerText = "Скачать необновлённую локализацию";
                 }
             }
         });
